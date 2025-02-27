@@ -68,6 +68,20 @@ namespace CrystalReportsNinja
         }
 
         /// <summary>
+        /// Match User input record selection fomula and apply to Report
+        /// </summary>
+        private void ProcessReportSelectionFilter()
+        {
+            var recordfilter = ReportArguments.RecordSelectionFormula;
+            if (recordfilter != null)
+            {
+                recordfilter = recordfilter.Trim();
+                if (recordfilter != string.Empty)
+                    _reportDoc.DataDefinition.RecordSelectionFormula = recordfilter;
+            }
+        }
+
+        /// <summary>
         /// Validate configurations related to program output.
         /// </summary>
         /// <remarks>
@@ -298,6 +312,7 @@ namespace CrystalReportsNinja
                 PerformDBLogin();
                 ApplyReportOutput();
                 ProcessParameters();
+                ProcessReportSelectionFilter();
 
                 PerformRefresh();
                 PerformOutput();
