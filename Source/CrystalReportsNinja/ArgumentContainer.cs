@@ -85,6 +85,11 @@ namespace CrystalReportsNinja
         /// </summary>
         public bool Refresh { get; set; }
 
+        /// <summary>
+        /// -RSF Append a record selection formula to report
+        /// </summary>
+        public string RecordSelectionFormula { get; set; }
+
         public ArgumentContainer()
         {
             // Assigning default values
@@ -147,6 +152,8 @@ namespace CrystalReportsNinja
                             ParameterCollection.Add(parameters[i + 1]);
                         else if (parameters[i].ToUpper() == "-TO")
                             MailTo = parameters[i + 1];
+                        else if (parameters[i].ToUpper() == "-RSF")
+                            RecordSelectionFormula = parameters[i + 1];
                     }
                 }
 
